@@ -37,7 +37,4 @@ python manage.py migrate
 # Create admin user
 python manage.py createsuperuser
 ```
-```bash
-# Create pages app
-python manage.py startapp pages
-```
+
