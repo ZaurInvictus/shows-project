@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="d-flex justify-content-between">
+    <h2>Tv Show {{ show.id }}</h2>
+    <a href="/shows" style="margin-right: 20%">Go Back</a>
+</div>
+
+<div>
+    <div class="mb-4 pb-2">
+        <p>Title: {{ show.Title }}</p>
+        <p>Network: {{ show.Network }}</p>
+        <p>Release Date: {{ show.Release_date }}</p>
+        <p>Description: {{ show.Description }}</p>
+    </div>
+
+    <div class="pt-4">
+        <p>last updated {{ show.updated_date }}</p>
+        <a href="edit/?id={{ show.id }}">Edit</a> |
+        <a href="delete/?id={{ show.id }}">Delete</a>
+    </div>
+</div>
+
+{% endblock %}

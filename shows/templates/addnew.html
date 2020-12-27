@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-md-7 m-auto">
+
+<div class="d-flex justify-content-between">
+    <h3>Add New Show</h3>
+    <a href="/shows">Go Back</a>
+</div>
+
+<form method="POST" class="post-form">{% csrf_token %}
+    <div class="form-group">
+        {{ form.Title.label_tag }}
+        {{ form.Title }}
+    </div>
+
+    <!-- Title errors -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-danger text-center">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    {% if form.Title.errors %}
+      <div class="alert alert-danger text-center">{{ form.Title.errors }}</div>
+    {% endif %}
+
+    <div class="form-row">
+        <div class="col">
+            {{ form.Network.label_tag }}
+            {{ form.Network }}
+        </div>
+        <div class="col">
+            {{ form.Release_date.label_tag }}
+            {{ form.Release_date }}
+            {{ form.Release_date.errors }}
+        </div>
+    </div>
+
+     <!-- Network errors -->
+    {% if form.Network.errors %}
+      <div class="alert alert-danger text-center mt-3">{{ form.Network.errors }}</div>
+    {% endif %}
+
+    <div class="form-group mt-4">
+        {{ form.Description.label_tag }}
+        {{ form.Description }}
+    </div>
+
+    <!-- Description errors -->
+    {% if form.Description.errors  %}
+      <div class="alert alert-danger text-center">{{ form.Description.errors }}</div>
+    {% endif %}
+    <input type="submit" value="Submit" class="btn btn-success">
+</form>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $("#id_Release_date").datepicker({
+                format: 'DD/MM/YYYY',
+                maxDate: new Date
+            });
+        });
+    })
+    $(function () {
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+        var maxDate = year + '-' + month + '-' + day;
+        $('#id_Release_date').attr('max', maxDate);
+    });
+</script>
+
+{% endblock %}
