@@ -21,10 +21,6 @@ python manage.py runserver
 python manage.py migrate
 ```
 ```bash
-# Create shows app
-python manage.py startapp shows
-```
-```bash
 # Create shows migrations
 python manage.py makemigrations shows
 ```
